@@ -16,6 +16,7 @@
 执行方法，示例：`fetchAgree(50688411, 'local001:8084')`
 其中`50688411`是回答id，很容易可以获取，`local001:8084`是本地server，用于将抓取的数据发送本地。
 由于知乎已经https化，所以本地server需要开启ssl，并且需要添加CORS跨域头，证书签名不熟悉的话可以借助[gencert.sh](https://github.com/michaelliao/itranswarp.js/blob/master/conf/ssl/gencert.sh)生成，如果你用的是nginx，可以参考`nginx.conf.sample`，10000行的列表，数据量大概在3M，post数据大小限制需要修改一下，想象下我跑了10分钟，看到http413的表情，还好chrome的xhr可以replay。
+为什么这么做呢，因为尝试本地脚本后发现也可以抓回列表（行数一致），但是没有各种header信息部分返回信息缺失，每次把header信息做参数传入的话不如直接在console里跑吧，如果觉得本地服务器搭建麻烦，稍作改造即可从控制台复制数据，卡死的时候要有耐心哦。
 
 #Step-3 比较列表
 此刻我认为你的data/fetch目录下已经存在了两个json文件，假设两个回答的id是22222和33333，访问/compare.php?22222_33333即可，运行完成即可看到结果链接
